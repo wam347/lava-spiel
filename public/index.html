@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Lava!">
+<meta name="theme-color" content="#ff6b2c">
+<link rel="apple-touch-icon" href="bilder/icon.png">
+<link rel="icon" href="bilder/icon.svg">
+<title>Der Boden ist Lava!</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+
+  <!-- Ton-Schalter (immer sichtbar) -->
+  <div id="ton-leiste">
+    <button id="btn-sound" class="rund" aria-label="Geräusche an/aus">🔊</button>
+    <button id="btn-musik" class="rund" aria-label="Musik an/aus">🎵</button>
+  </div>
+
+  <!-- START -->
+  <section id="s-start" class="screen aktiv">
+    <div class="titel-bereich">
+      <div id="titelbild"></div>
+      <h1 class="lava-titel" id="spiel-titel">Der Boden ist Lava!</h1>
+      <p class="untertitel">Hüpf von Möbel zu Möbel – aber nicht den Boden berühren!</p>
+    </div>
+    <div class="knopf-reihe">
+      <button class="btn gross" id="btn-1p">🧒 1 Spieler</button>
+      <button class="btn gross lila" id="btn-2p">👯 2 Spieler</button>
+    </div>
+  </section>
+
+  <!-- PROFILE -->
+  <section id="s-profile" class="screen">
+    <header class="kopf"><button class="rund zurueck" data-ziel="s-start">←</button><h2>Wer spielt?</h2></header>
+    <div id="profil-liste" class="karten-gitter"></div>
+  </section>
+
+  <!-- PROFIL BEARBEITEN -->
+  <section id="s-profil-edit" class="screen">
+    <header class="kopf"><button class="rund zurueck" data-ziel="s-profile">←</button><h2 id="edit-titel">Neues Profil</h2></header>
+    <div class="formular">
+      <label class="feld-label" for="edit-name">Dein Name</label>
+      <input id="edit-name" maxlength="20" autocomplete="off" placeholder="Name eingeben">
+      <div class="feld-label">Wähle deine Figur</div>
+      <div id="edit-figuren" class="figuren-wahl"></div>
+      <div class="knopf-reihe">
+        <button class="btn gross gruen" id="btn-edit-ok">✔ Fertig</button>
+        <button class="btn klein rot" id="btn-edit-loeschen">🗑 Profil löschen</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEVELAUSWAHL -->
+  <section id="s-level" class="screen">
+    <header class="kopf">
+      <button class="rund zurueck" data-ziel="s-profile">←</button>
+      <div class="kopf-profil" id="level-profil"></div>
+      <div class="stern-zaehler" id="level-sterne"></div>
+    </header>
+    <div id="level-liste"></div>
+  </section>
+
+  <!-- 2-SPIELER EINRICHTEN -->
+  <section id="s-duell" class="screen">
+    <header class="kopf"><button class="rund zurueck" data-ziel="s-start">←</button><h2>Wettrennen zu zweit</h2></header>
+    <div class="duell-wahl">
+      <div class="duell-spieler" data-sp="0">
+        <input class="duell-name" maxlength="20" value="Spieler 1">
+        <div class="figuren-wahl klein"></div>
+      </div>
+      <div class="duell-vs">gegen</div>
+      <div class="duell-spieler" data-sp="1">
+        <input class="duell-name" maxlength="20" value="Spieler 2">
+        <div class="figuren-wahl klein"></div>
+      </div>
+    </div>
+    <div class="feld-label mitte">Wie sitzt ihr?</div>
+    <div class="umschalter" id="sitz">
+      <button data-v="neben" class="an">🧍🧍 Nebeneinander</button>
+      <button data-v="gegen">🧍↕🧍 Gegenüber</button>
+    </div>
+    <div class="feld-label mitte">Level wählen</div>
+    <div id="duell-level" class="duell-level"></div>
+  </section>
+
+  <!-- SPIEL -->
+  <section id="s-spiel" class="screen">
+    <div id="hud">
+      <button class="rund" id="btn-pause" aria-label="Pause">⏸</button>
+      <div class="hud-mitte">
+        <div id="hud-titel"></div>
+        <div class="zeit-leiste"><div id="zeit-balken"></div><span id="zeit-text"></span></div>
+      </div>
+      <div id="hud-sterne" class="hud-sterne"></div>
+    </div>
+    <div id="felder"></div>
+  </section>
+
+  <!-- OVERLAYS -->
+  <div id="overlay" class="overlay">
+    <div class="karte" id="overlay-karte"></div>
+  </div>
+  <div id="countdown" class="countdown"></div>
+</div>
+
+<script src="config.js"></script>
+<script src="levels.js"></script>
+<script src="audio.js"></script>
+<script src="game.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+services:
+  lava-spiel:
+    build: .
+    container_name: lava-spiel
+    restart: unless-stopped
+    ports:
+      - "3040:3040"
+    volumes:
+      # Spielstände (Profile + Sterne) bleiben hier erhalten
+      - ./data:/app/data
+      # Bilder, Level und Spieldateien live eingehängt:
+      # Änderungen sind nach einem Neuladen im Browser sofort da
+      - ./public:/app/public
+      # Server-Code live eingehängt: nach Änderung nur Container neu starten
+      - ./server.js:/app/server.js
